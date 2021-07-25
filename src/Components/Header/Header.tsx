@@ -34,6 +34,7 @@ const Header:React.FC = () =>{
                      menuButton:{
                         color:theme.palette.primary.main,
                         marginRight:theme.spacing(2),
+                        display:"none",
                         [theme.breakpoints.down('md')]:{
                           display:"block"
                         }
@@ -46,13 +47,12 @@ const Header:React.FC = () =>{
   const routeHandler = React.useCallback<(event:React.MouseEvent) => void>((event:React.MouseEvent)=>{
     navigateTo((event.currentTarget as HTMLInputElement).name);
   },[navigateTo]);
-  const [isMobile,setMobile] = React.useState(false);
   return (
     <header className={classes.root}>
       <AppBar position="sticky" elevation={0} color='transparent'>
         <Toolbar>
-        <IconButton onClick={routeHandler} name="home" edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
-            <HomeOutlinedIcon />
+        <IconButton onClick={routeHandler} name="home" edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
           </IconButton> 
           <Typography variant="h3" className={classes.title} id="title">
             JWeather
