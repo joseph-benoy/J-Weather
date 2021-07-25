@@ -35,6 +35,8 @@ const Header:React.FC = () =>{
   const routeHandler = React.useCallback<(event:React.MouseEvent) => void>((event:React.MouseEvent)=>{
     navigateTo((event.currentTarget as HTMLInputElement).name);
   },[navigateTo]);
+  const appBarRef = React.useRef<HTMLDivElement>(null);
+  const screenWidth = window.screen.width;
   return (
     <header className={classes.root}>
       <AppBar position="static" elevation={0} color='transparent'>

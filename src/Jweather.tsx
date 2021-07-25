@@ -10,9 +10,12 @@ const Jweather:React.FC = ()=>{
               <>
               <ThemeProvider theme={theme}>
                      <Router>
-                     <Header/>
+                            <Header/>
                             <Switch>
                                    <Route exact path="/home">
+                                          <Home/>
+                                   </Route>
+                                   <Route exact path="/">
                                           <Home/>
                                    </Route>
                             </Switch>

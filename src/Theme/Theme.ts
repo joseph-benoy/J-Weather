@@ -17,7 +17,6 @@ declare module "@material-ui/core/styles/createPalette" {
               lightYellow: PaletteOptions['primary'];
        }
 }
-
 const theme = createTheme({
        palette:{
               primary:{
@@ -38,7 +37,7 @@ const theme = createTheme({
                      'Hammersmith One',
                      'serif',
                      ].join(','),
-       }
+       },
 });
 
 export default theme;
