@@ -10,6 +10,7 @@ import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutline
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 import {Theme} from '@material-ui/core'
 import {useHistory} from 'react-router';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const Header:React.FC = () =>{
        const useStyles = makeStyles((theme:Theme) =>
@@ -20,13 +21,23 @@ const Header:React.FC = () =>{
                      },
                      headerButtons: {
                             color:theme.palette.primary.main,
-                            marginRight:theme.spacing(2)
+                            marginRight:theme.spacing(2),
+                            [theme.breakpoints.down('md')]:{
+                              display:"none"
+                            }
                      },
                      title: {
                             flexGrow: 1,
                             color:theme.palette.primary.main,
                             fontWeight:"bolder"
                      },
+                     menuButton:{
+                        color:theme.palette.primary.main,
+                        marginRight:theme.spacing(2),
+                        [theme.breakpoints.down('md')]:{
+                          display:"block"
+                        }
+                     }
               }),
        );
   const classes = useStyles();
@@ -35,12 +46,14 @@ const Header:React.FC = () =>{
   const routeHandler = React.useCallback<(event:React.MouseEvent) => void>((event:React.MouseEvent)=>{
     navigateTo((event.currentTarget as HTMLInputElement).name);
   },[navigateTo]);
-  const appBarRef = React.useRef<HTMLDivElement>(null);
-  const screenWidth = window.screen.width;
+  const [isMobile,setMobile] = React.useState(false);
   return (
     <header className={classes.root}>
-      <AppBar position="static" elevation={0} color='transparent'>
+      <AppBar position="sticky" elevation={0} color='transparent'>
         <Toolbar>
+        <IconButton onClick={routeHandler} name="home" edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+            <HomeOutlinedIcon />
+          </IconButton> 
           <Typography variant="h3" className={classes.title} id="title">
             JWeather
           </Typography>
