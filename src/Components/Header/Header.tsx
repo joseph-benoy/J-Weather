@@ -4,25 +4,28 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import CloudIcon from '@material-ui/icons/Cloud';
-import HomeIcon from '@material-ui/icons/Home';
-import InfoIcon from '@material-ui/icons/Info';
-import PhoneIcon from '@material-ui/icons/Phone';
-
-
+import FilterDramaOutlinedIcon from '@material-ui/icons/FilterDramaOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
+import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
+import {Theme} from '@material-ui/core'
+import './Header.scss';
 
 
 const Header:React.FC = () =>{
-       const useStyles = makeStyles((theme:any) =>
+       const useStyles = makeStyles((theme:Theme) =>
               createStyles({
                      root: {
                             flexGrow: 1,
                      },
-                     menuButton: {
-                            marginRight: theme.spacing(2),
+                     headerButtons: {
+                            color:theme.palette.primary.main,
+                            marginRight:theme.spacing(2)
                      },
                      title: {
                             flexGrow: 1,
+                            color:theme.palette.primary.main,
+                            fontWeight:"bolder"
                      },
               }),
        );
@@ -30,22 +33,22 @@ const Header:React.FC = () =>{
 
   return (
     <header className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" elevation={0} color='transparent'>
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
+          <Typography variant="h4" className={classes.title} id="title">
             JWeather
           </Typography>
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-            <HomeIcon />
+          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+            <HomeOutlinedIcon />
           </IconButton>          
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-            <CloudIcon />
+          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+            <FilterDramaOutlinedIcon />
           </IconButton>          
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-            <InfoIcon />
+          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+            <ContactSupportOutlinedIcon />
           </IconButton >         
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-            <PhoneIcon />
+          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+            <LocalPhoneOutlinedIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
