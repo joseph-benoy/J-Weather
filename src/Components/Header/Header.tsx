@@ -9,7 +9,6 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 import {Theme} from '@material-ui/core'
-//import './Header.scss';
 
 
 const Header:React.FC = () =>{
