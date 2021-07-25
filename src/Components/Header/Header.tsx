@@ -3,9 +3,11 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import CloudIcon from '@material-ui/icons/Cloud';
+import HomeIcon from '@material-ui/icons/Home';
+import InfoIcon from '@material-ui/icons/Info';
+import PhoneIcon from '@material-ui/icons/Phone';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,15 +27,27 @@ const Header:React.FC = () =>{
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <header className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             JWeather
           </Typography>
+          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            <HomeIcon />
+          </IconButton>          
+          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            <CloudIcon />
+          </IconButton>          
+          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            <InfoIcon />
+          </IconButton >         
+          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
+            <PhoneIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
-    </div>
+    </header>
   );
 }
 
