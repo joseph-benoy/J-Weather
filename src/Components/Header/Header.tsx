@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -9,21 +9,23 @@ import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
 import PhoneIcon from '@material-ui/icons/Phone';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-  }),
-);
+
+
 
 const Header:React.FC = () =>{
+       const useStyles = makeStyles((theme:any) =>
+              createStyles({
+                     root: {
+                            flexGrow: 1,
+                     },
+                     menuButton: {
+                            marginRight: theme.spacing(2),
+                     },
+                     title: {
+                            flexGrow: 1,
+                     },
+              }),
+       );
   const classes = useStyles();
 
   return (
