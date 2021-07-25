@@ -9,13 +9,14 @@ import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 import {Theme} from '@material-ui/core'
-
+import {useHistory} from 'react-router';
 
 const Header:React.FC = () =>{
        const useStyles = makeStyles((theme:Theme) =>
               createStyles({
                      root: {
                             flexGrow: 1,
+                            marginTop:"2vh"
                      },
                      headerButtons: {
                             color:theme.palette.primary.main,
@@ -29,24 +30,28 @@ const Header:React.FC = () =>{
               }),
        );
   const classes = useStyles();
-
+  const history = useHistory();
+  const navigateTo = React.useRef(history.push).current;
+  const routeHandler = React.useCallback<(event:React.MouseEvent) => void>((event:React.MouseEvent)=>{
+    navigateTo((event.currentTarget as HTMLInputElement).name);
+  },[navigateTo]);
   return (
     <header className={classes.root}>
       <AppBar position="static" elevation={0} color='transparent'>
         <Toolbar>
-          <Typography variant="h4" className={classes.title} id="title">
+          <Typography variant="h3" className={classes.title} id="title">
             JWeather
           </Typography>
-          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+          <IconButton onClick={routeHandler} name="home" edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
             <HomeOutlinedIcon />
           </IconButton>          
-          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+          <IconButton onClick={routeHandler} name="weather" edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
             <FilterDramaOutlinedIcon />
           </IconButton>          
-          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+          <IconButton onClick={routeHandler} name="about" edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
             <ContactSupportOutlinedIcon />
           </IconButton >         
-          <IconButton edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
+          <IconButton onClick={routeHandler} name="contact" edge="end" className={classes.headerButtons} color="inherit" aria-label="menu">
             <LocalPhoneOutlinedIcon />
           </IconButton>
         </Toolbar>
