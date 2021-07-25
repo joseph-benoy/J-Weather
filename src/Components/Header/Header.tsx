@@ -27,13 +27,20 @@ const Header:React.FC = () =>{
                             }
                      },
                      title: {
-                            flexGrow: 1,
+                            flexGrow: 2,
                             color:theme.palette.primary.main,
-                            fontWeight:"bolder"
+                            fontWeight:"bold",
+                            [theme.breakpoints.down('md')]:{
+                              display:"block",
+                              fontSize:"2em",
+                              fontWeight:"normal",
+                              textAlign:"center"
+                            }
                      },
                      menuButton:{
+                        flexGrow:0,
                         color:theme.palette.primary.main,
-                        marginRight:theme.spacing(2),
+                        marginRight:theme.spacing(-3),
                         display:"none",
                         [theme.breakpoints.down('md')]:{
                           display:"block"
@@ -51,8 +58,8 @@ const Header:React.FC = () =>{
     <header className={classes.root}>
       <AppBar position="sticky" elevation={0} color='transparent'>
         <Toolbar>
-        <IconButton onClick={routeHandler} name="home" edge="end" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
+        <IconButton edge="start"  className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon fontSize="large" />
           </IconButton> 
           <Typography variant="h3" className={classes.title} id="title">
             JWeather
