@@ -1,4 +1,5 @@
 import { createTheme} from '@material-ui/core/styles';
+import "@fontsource/hammersmith-one"
 
 declare module "@material-ui/core/styles/createPalette" {
        interface Palette {
@@ -31,6 +32,12 @@ const theme = createTheme({
               lightYellow:{
                      main:'#F58634'
               }
+       },
+       typography:{
+              fontFamily: [
+                     'Hammersmith One',
+                     'serif',
+                     ].join(','),
        }
 });
 
