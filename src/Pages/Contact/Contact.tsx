@@ -5,7 +5,12 @@ import { Typography } from '@material-ui/core';
 import MainButton from '../../Components/MainButton/MainButton';
 import { useHistory } from 'react-router';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
-import { useForm } from 'react-hook-form';
+import { useForm,SubmitHandler } from 'react-hook-form';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
+
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -57,6 +62,16 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
                      display:"block"
               }
        },
+       formLabel:{
+              fontFamily:"sans-serif",
+       },
+       formBase: {
+              '& > *': {
+                margin: theme.spacing(1),
+              },
+            },
+            formInput:{
+            }
 }))
 interface contactFormInputs {
        fullName: string
@@ -67,10 +82,19 @@ const Contact:React.FC = ()=>{
        const classes = useStyles();
        const history = useHistory();
        const {handleSubmit,register,formState:{errors}} = useForm<contactFormInputs>();
+       const onSubmit:SubmitHandler<contactFormInputs> = (data)=>console.log(data); 
        return (
               <Grid container className={classes.root}>
                      <Grid item lg={6}>
                             <img src="./images/contact_us.svg" alt="contact-us" className={classes.coverImage}/>
+                     </Grid>
+                     <Grid item lg={6}>
+                            <form className={classes.formBase} noValidate autoComplete="off"> 
+                                   <FormControl variant="outlined">
+                                          <InputLabel className={classes.formLabel} htmlFor="fullName">Name</InputLabel>
+                                          <OutlinedInput className={classes.formInput} id="fullName"   label="Name" />
+                                   </FormControl>
+                            </form>
                      </Grid>
               </Grid>
        );
