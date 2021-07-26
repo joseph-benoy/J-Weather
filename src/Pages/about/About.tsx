@@ -5,6 +5,7 @@ import { Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import { Divider } from '@material-ui/core';
 import { useHistory } from 'react-router';
+import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -27,10 +28,30 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        textGrid:{
               marginLeft:"5vw"
        },
+       buttonGrid:{
+              justifyContent:"center",
+              [theme.breakpoints.up('md')]:{
+                     justifyContent:"flex-start"
+              }
+       },
+       button:{
+              color:"white",
+              margin: theme.spacing(1),
+              marginTop:theme.spacing(3),
+              width:"15vw",
+              [theme.breakpoints.down('md')]:{
+                     width:"60vw"
+              }
+       },
 }))
 
 const About:React.FC = ()=>{
        const classes = useStyles();
+       const history = useHistory();
+       const navigateTo = React.useRef(history.push).current;
+       const routeToContact = React.useCallback(()=>{
+              navigateTo("contact");
+       },[navigateTo])
        return (
               <Grid container className={classes.root}>
                      <Grid item lg={6}>
@@ -43,6 +64,11 @@ const About:React.FC = ()=>{
                             <Typography variant="h6" className={classes.subHeading}>
                                    J-Weather built using open weather api. We help you to get detailed weather reports of about 2,00,000+ cities up-to-date.
                             </Typography>
+                            <Grid item container className={classes.buttonGrid}>
+                                   <Button onClick={routeToContact} startIcon={<LocalPhoneOutlinedIcon/>} size="large" className={classes.button} variant="contained" color="secondary">
+                                          <Typography>say hello!</Typography>
+                                   </Button>
+                            </Grid>
                      </Grid>
               </Grid>
        );
