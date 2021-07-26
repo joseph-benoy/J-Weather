@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               [theme.breakpoints.down('md')]:{
                      textAlign:"center",
                      fontSize:"4em",
+                     marginTop:theme.spacing(2)
               }
        },
        button:{
