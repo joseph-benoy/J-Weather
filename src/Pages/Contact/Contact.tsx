@@ -4,7 +4,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import MainButton from '../../Components/MainButton/MainButton';
 import { useHistory } from 'react-router';
-import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 import { useForm,SubmitHandler } from 'react-hook-form';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -23,9 +22,11 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               width:"85%",
               height:"85%",
               marginBottom:"5vh",
+              [theme.breakpoints.down('md')]:{
+                     display:"none"
+              }  
        },
        title:{
-              marginTop:"5vh",
               [theme.breakpoints.down('md')]:{
                      textAlign:"center"
               }              
@@ -71,6 +72,11 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        formBase: {
             },
             formInput:{
+            },
+            formGrid:{
+              [theme.breakpoints.down('md')]:{
+                    width:"101.5vw"
+              }
             }
 }))
 interface contactFormInputs {
@@ -90,9 +96,9 @@ const Contact:React.FC = ()=>{
                      </Grid>
                      <Grid item container lg={5}>
                             <form className={classes.formBase} noValidate autoComplete="off"> 
-                                   <Grid container item xs={12} spacing={3}>
-                                          <Grid>
-                                                 <Typography variant="h3">Get In Touch</Typography>
+                                   <Grid container xs={12} className={classes.formGrid}  spacing={3}>
+                                          <Grid item xs={12}>
+                                                 <Typography className={classes.title} variant="h4">Contact Us</Typography>
                                           </Grid>
                                           <Grid item xs={12}>
                                                  <FormControl variant="outlined" fullWidth={true}>
@@ -134,7 +140,7 @@ const Contact:React.FC = ()=>{
                                                  />
                                           </Grid>
                                           <Grid item xs={12}  style={{marginTop:"-5vh"}}>
-                                                        <MainButton text="send message" icon={<SendOutlinedIcon/>}/>
+                                                        <MainButton text="message" icon={<SendOutlinedIcon/>}/>
                                           </Grid>
                                    </Grid>
                             </form>
