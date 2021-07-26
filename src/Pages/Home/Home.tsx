@@ -13,6 +13,23 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               [theme.breakpoints.down('md')]:{
                      display:"none"
               }
+       },
+       subHeading:{
+              fontSize:"1.5em",
+              fontFamily:"sans-serif",
+              color:"rgba(0,0,0,0.7)",
+              [theme.breakpoints.down('md')]:{
+                     textAlign:"justify"
+              }
+
+       },
+       heading:{
+              fontSize:"4.5em",
+              color:theme.palette.primary.main,
+              [theme.breakpoints.down('md')]:{
+                     textAlign:"center",
+                     fontSize:"4em",
+              }
        }
 }));
 
@@ -21,14 +38,14 @@ const Home:React.FC = ()=>{
        return (
               <Grid container className={classes.root}>
                      <Grid item xs={12} lg={6}>
-                            <img alt="home-page-cover-image" className={classes.coverImage} src="./images/home_cover.svg"/>
+                            <img alt="home-page-cover" className={classes.coverImage} src="./images/home_cover.svg"/>
                      </Grid>
-                     <Grid item lg={6}>
-                            <Typography variant="h2">
-                                   One-Touch weather updates
+                     <Grid item lg={5}>
+                            <Typography variant="h1" className={classes.heading}>
+                                   One-Touch weather
                             </Typography>
-                            <Typography variant="body1" style={{fontSize:"2em",fontWeight:"normal"}}> 
-                                   Get detailed weather updates of 2,00,000+ cities in few clicks
+                            <Typography variant="body1" className={classes.subHeading}> 
+                                   Get detailed weather updates of 2,00,000+ cities in few clicks. Plan your day with our weather reports  and prepare for anything
                             </Typography>
                      </Grid>
               </Grid>
