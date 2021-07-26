@@ -17,6 +17,11 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import FilterDramaOutlinedIcon from '@material-ui/icons/FilterDramaOutlined';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
+import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
+
 
 const drawerWidth = 240;
 
@@ -41,6 +46,11 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: theme.spacing(2),
+      color:theme.palette.primary.main,
+      display:"none",
+      [theme.breakpoints.down('md')]:{
+        display:"block"
+      }
     },
     hide: {
       display: 'none',
@@ -76,10 +86,22 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
       marginLeft: 0,
     },
+    title:{
+      color:theme.palette.primary.main,
+      flexGrow:2,
+    },
+    rlinks:{
+      marginRight: theme.spacing(2),
+      color:theme.palette.primary.main,
+      display:"block",
+      [theme.breakpoints.down('md')]:{
+        display:"none"
+      }
+    }
   }),
 );
 
-export default function PersistentDrawerLeft() {
+const Header = ()=> {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -100,6 +122,8 @@ export default function PersistentDrawerLeft() {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
+        elevation={0}
+        color="transparent"
       >
         <Toolbar>
           <IconButton
@@ -108,12 +132,25 @@ export default function PersistentDrawerLeft() {
             onClick={handleDrawerOpen}
             edge="start"
             className={clsx(classes.menuButton, open && classes.hide)}
+            style={{color:theme.palette.primary.main}}
           >
-            <MenuIcon />
+            <MenuIcon fontSize="large"/>
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
+          <Typography variant="h4" noWrap className={classes.title}>
+            J-Weather
           </Typography>
+          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+              <HomeOutlinedIcon />
+          </IconButton>
+          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+              <FilterDramaOutlinedIcon />
+          </IconButton>
+          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+              <ContactSupportOutlinedIcon />
+          </IconButton>
+          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+              <LocalPhoneOutlinedIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -149,36 +186,9 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
       </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
-      </main>
     </div>
   );
 }
+
+
+export default Header;
