@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        },
 }))
 
-const contact:React.FC = ()=>{
+const Contact:React.FC = ()=>{
        const classes = useStyles();
        const history = useHistory();
        const navigateTo = React.useRef(history.push).current;
@@ -67,7 +67,7 @@ const contact:React.FC = ()=>{
        },[navigateTo])
        return (
               <Grid container className={classes.root}>
-                            
+                     
               </Grid>
        );
 }
