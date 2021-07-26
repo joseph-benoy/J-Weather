@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               fontFamily:"sans-serif",
               color:"rgba(0,0,0,0.7)",
               [theme.breakpoints.down('md')]:{
-                     textAlign:"justify"
+                     textAlign:"justify",
               }
 
        },
