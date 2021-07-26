@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        subHeading:{
               color:"rgba(0,0,0,0.7)",
               fontFamily:"sans-serif",
-       }
+       },
+       textGrid:{
+              marginLeft:"5vw"
+       },
 }))
 
 const About:React.FC = ()=>{
@@ -33,7 +36,7 @@ const About:React.FC = ()=>{
                      <Grid item lg={6}>
                             <img className={classes.coverImage} src="./images/about_cover.svg" alt="about-page-cover"/>
                      </Grid>
-                     <Grid item lg={5}>
+                     <Grid item lg={5} className={classes.textGrid}>
                             <Typography variant="h3" className={classes.title}>
                                    About us
                             </Typography>
