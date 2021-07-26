@@ -13,15 +13,15 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import TextField from '@material-ui/core/TextField';
-
+import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
               padding:"5vw",
        },
        coverImage:{
-              width:"100%",
-              height:"100%",
+              width:"85%",
+              height:"85%",
               marginBottom:"5vh",
        },
        title:{
@@ -69,9 +69,6 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               fontFamily:"sans-serif",
        },
        formBase: {
-              '& > *': {
-                margin: theme.spacing(1),
-              },
             },
             formInput:{
             }
@@ -88,12 +85,15 @@ const Contact:React.FC = ()=>{
        const onSubmit:SubmitHandler<contactFormInputs> = (data)=>console.log(data); 
        return (
               <Grid container className={classes.root}>
-                     <Grid item lg={6}>
+                     <Grid item lg={7}>
                             <img src="./images/contact_us.svg" alt="contact-us" className={classes.coverImage}/>
                      </Grid>
-                     <Grid item container lg={6}>
+                     <Grid item container lg={5}>
                             <form className={classes.formBase} noValidate autoComplete="off"> 
                                    <Grid container item xs={12} spacing={3}>
+                                          <Grid>
+                                                 <Typography variant="h3">Get In Touch</Typography>
+                                          </Grid>
                                           <Grid item xs={12}>
                                                  <FormControl variant="outlined" fullWidth={true}>
                                                         <InputLabel className={classes.formLabel} htmlFor="fullName">Name</InputLabel>
@@ -132,6 +132,9 @@ const Contact:React.FC = ()=>{
                                                         variant="outlined"
                                                         fullWidth={true}
                                                  />
+                                          </Grid>
+                                          <Grid item xs={12}  style={{marginTop:"-5vh"}}>
+                                                        <MainButton text="send message" icon={<SendOutlinedIcon/>}/>
                                           </Grid>
                                    </Grid>
                             </form>
