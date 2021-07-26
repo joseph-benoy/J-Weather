@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      marginBottom:"10vh",
     },
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
@@ -120,7 +121,7 @@ const Header = ()=> {
     navigateTo((route));
   },[navigateTo]);
   return (
-    <div className={classes.root}>
+    <header className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -192,7 +193,7 @@ const Header = ()=> {
             </ListItem>
         </List>
       </Drawer>
-    </div>
+    </header>
   );
 }
 
