@@ -15,13 +15,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 import FilterDramaOutlinedIcon from '@material-ui/icons/FilterDramaOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ContactSupportOutlinedIcon from '@material-ui/icons/ContactSupportOutlined';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
-
+import { useHistory } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -113,7 +111,11 @@ const Header = ()=> {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const history = useHistory();
+  const navigateTo = React.useRef(history.push).current;
+  const routeHandler = React.useCallback<(event:React.MouseEvent) => void>((event:React.MouseEvent)=>{
+    navigateTo((event.currentTarget as HTMLInputElement).name);
+  },[navigateTo]);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -139,16 +141,16 @@ const Header = ()=> {
           <Typography variant="h4" noWrap className={classes.title}>
             J-Weather
           </Typography>
-          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+          <IconButton edge="end" name="home" onClick={routeHandler} className={classes.rlinks} color="inherit" aria-label="menu">
               <HomeOutlinedIcon />
           </IconButton>
-          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+          <IconButton edge="end" name="weather" onClick={routeHandler} className={classes.rlinks} color="inherit" aria-label="menu">
               <FilterDramaOutlinedIcon />
           </IconButton>
-          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+          <IconButton edge="end" name="about" onClick={routeHandler} className={classes.rlinks} color="inherit" aria-label="menu">
               <ContactSupportOutlinedIcon />
           </IconButton>
-          <IconButton edge="end" className={classes.rlinks} color="inherit" aria-label="menu">
+          <IconButton edge="end" name="contact" onClick={routeHandler} className={classes.rlinks} color="inherit" aria-label="menu">
               <LocalPhoneOutlinedIcon />
           </IconButton>
         </Toolbar>
@@ -169,19 +171,19 @@ const Header = ()=> {
         </div>
         <Divider />
         <List>
-            <ListItem button>
+            <ListItem button onClick={routeHandler}>
               <ListItemIcon><HomeOutlinedIcon/></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={routeHandler}>
               <ListItemIcon><FilterDramaOutlinedIcon/></ListItemIcon>
               <ListItemText primary="Weather" />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={routeHandler}>
               <ListItemIcon><ContactSupportOutlinedIcon/></ListItemIcon>
               <ListItemText primary="About" />
             </ListItem>
-            <ListItem button>
+            <ListItem button onClick={routeHandler}>
               <ListItemIcon><LocalPhoneOutlinedIcon/></ListItemIcon>
               <ListItemText primary="Contact" />
             </ListItem>
