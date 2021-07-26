@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
 
        },
        heading:{
-              fontSize:"4.5em",
+              fontSize:"6em",
               color:theme.palette.primary.main,
               [theme.breakpoints.down('md')]:{
                      textAlign:"center",
