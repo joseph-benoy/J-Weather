@@ -20,13 +20,20 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        },
        title:{
               color:theme.palette.primary.main,
+              [theme.breakpoints.down('md')]:{
+                     textAlign:"center"
+              }              
        },
        subHeading:{
               color:"rgba(0,0,0,0.7)",
               fontFamily:"sans-serif",
+              textAlign:"justify"
        },
        textGrid:{
-              marginLeft:"5vw"
+              marginLeft:"5vw",
+              [theme.breakpoints.down('md')]:{
+                     marginLeft:"0vw",
+              }
        },
        buttonGrid:{
               justifyContent:"center",
