@@ -2,10 +2,10 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import { Button } from '@material-ui/core';
 import FilterDramaOutlinedIcon from '@material-ui/icons/FilterDramaOutlined';
 import { Divider } from '@material-ui/core';
 import { useHistory } from 'react-router';
+import MainButton from '../../Components/MainButton/MainButton';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -77,15 +77,11 @@ const Home:React.FC = ()=>{
                             <Typography variant="body1" className={classes.subHeading}> 
                                    Get detailed weather updates of 2,00,000+ cities in few clicks. Plan your day with our weather reports  and prepare for anything
                             </Typography>
-                            <Grid item container className={classes.buttonGrid}>
-                                   <Button onClick={routeToWeather} startIcon={<FilterDramaOutlinedIcon/>} size="large" className={classes.button} variant="contained" color="secondary">
-                                          <Typography>Checkout</Typography>
-                                   </Button>
-                            </Grid>
+                            <MainButton text="checkout" icon={<FilterDramaOutlinedIcon/>} click={routeToWeather}/>
                             <Divider className={classes.divide}/>
                      </Grid>
               </Grid>
        );
 }
 
-export default Home;
+export default React.memo(Home);

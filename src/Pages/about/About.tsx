@@ -2,8 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import { Button } from '@material-ui/core';
-import { Divider } from '@material-ui/core';
+import MainButton from '../../Components/MainButton/MainButton';
 import { useHistory } from 'react-router';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
 
@@ -78,14 +77,10 @@ const About:React.FC = ()=>{
                             <Typography variant="h6" className={classes.subHeading}>
                                    J-Weather built using open weather api. We help you to get detailed weather reports of about 2,00,000+ cities up-to-date.
                             </Typography>
-                            <Grid item container className={classes.buttonGrid}>
-                                   <Button onClick={routeToContact} startIcon={<LocalPhoneOutlinedIcon/>} size="large" className={classes.button} variant="contained" color="secondary">
-                                          <Typography>say hello!</Typography>
-                                   </Button>
-                            </Grid>
+                            <MainButton text="say hello!" icon={<LocalPhoneOutlinedIcon/>} click={routeToContact}/>
                      </Grid>
               </Grid>
        );
 }
 
-export default About;
+export default React.memo(About);
