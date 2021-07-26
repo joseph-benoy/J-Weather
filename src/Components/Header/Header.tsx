@@ -116,6 +116,9 @@ const Header = ()=> {
   const routeHandler = React.useCallback<(event:React.MouseEvent) => void>((event:React.MouseEvent)=>{
     navigateTo((event.currentTarget as HTMLInputElement).name);
   },[navigateTo]);
+  const routeHandlerL = React.useCallback<(route:string) => void>((route:string)=>{
+    navigateTo((route));
+  },[navigateTo]);
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -171,19 +174,19 @@ const Header = ()=> {
         </div>
         <Divider />
         <List>
-            <ListItem button onClick={routeHandler}>
+            <ListItem button onClick={()=>{routeHandlerL('home')}}>
               <ListItemIcon><HomeOutlinedIcon/></ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem button onClick={routeHandler}>
+            <ListItem button onClick={()=>{routeHandlerL('weather')}}>
               <ListItemIcon><FilterDramaOutlinedIcon/></ListItemIcon>
               <ListItemText primary="Weather" />
             </ListItem>
-            <ListItem button onClick={routeHandler}>
+            <ListItem button onClick={()=>{routeHandlerL('about')}}>
               <ListItemIcon><ContactSupportOutlinedIcon/></ListItemIcon>
               <ListItemText primary="About" />
             </ListItem>
-            <ListItem button onClick={routeHandler}>
+            <ListItem button onClick={()=>{routeHandlerL('contact')}}>
               <ListItemIcon><LocalPhoneOutlinedIcon/></ListItemIcon>
               <ListItemText primary="Contact" />
             </ListItem>
