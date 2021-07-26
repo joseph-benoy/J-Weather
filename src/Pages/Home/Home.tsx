@@ -5,7 +5,7 @@ import { Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 import FilterDramaOutlinedIcon from '@material-ui/icons/FilterDramaOutlined';
 import { Divider } from '@material-ui/core';
-import { height } from '@material-ui/system';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -60,6 +60,11 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
 
 const Home:React.FC = ()=>{
        const classes = useStyles();
+       const history = useHistory();
+       const navigateTo = React.useRef(history.push).current;
+       const routeToWeather = React.useCallback(()=>{
+              navigateTo("weather");
+       },[navigateTo]);
        return (
               <Grid container className={classes.root}>
                      <Grid item xs={12} lg={6}>
@@ -73,7 +78,7 @@ const Home:React.FC = ()=>{
                                    Get detailed weather updates of 2,00,000+ cities in few clicks. Plan your day with our weather reports  and prepare for anything
                             </Typography>
                             <Grid item container className={classes.buttonGrid}>
-                                   <Button startIcon={<FilterDramaOutlinedIcon/>} size="large" className={classes.button} variant="contained" color="secondary">
+                                   <Button onClick={routeToWeather} startIcon={<FilterDramaOutlinedIcon/>} size="large" className={classes.button} variant="contained" color="secondary">
                                           <Typography>Checkout</Typography>
                                    </Button>
                             </Grid>
