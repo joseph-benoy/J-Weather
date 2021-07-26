@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
 }));
 
 interface Props{
-       click:()=>void,
+       click?:()=>void,
        icon:JSX.Element,
        text:string
 }

@@ -12,8 +12,8 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               padding:"5vw",
        },
        coverImage:{
-              width:"95%",
-              height:"95%",
+              width:"100%",
+              height:"100%",
               marginBottom:"5vh",
        },
        title:{
