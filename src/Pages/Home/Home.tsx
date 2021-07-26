@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               marginTop:theme.spacing(3),
               width:"15vw",
               [theme.breakpoints.down('md')]:{
-                     width:"60vw"
+                     width:"50vw"
               }
        },
        buttonGrid:{

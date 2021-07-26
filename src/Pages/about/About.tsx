@@ -14,12 +14,10 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        coverImage:{
               width:"100%",
               height:"100%",
-              [theme.breakpoints.down('md')]:{
-                     display:"none"
-              }
+              marginBottom:"5vh",
        },
        title:{
-              color:theme.palette.primary.main,
+              marginTop:"5vh",
               [theme.breakpoints.down('md')]:{
                      textAlign:"center"
               }              
@@ -47,7 +45,16 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               marginTop:theme.spacing(3),
               width:"15vw",
               [theme.breakpoints.down('md')]:{
-                     width:"60vw"
+                     width:"50vw"
+              }
+       },
+       coverImageMob:{
+              width:"100%",
+              height:"100%",
+              display:"none",
+              marginTop:"-10vh",
+              [theme.breakpoints.down('md')]:{
+                     display:"block"
               }
        },
 }))
@@ -65,7 +72,7 @@ const About:React.FC = ()=>{
                             <img className={classes.coverImage} src="./images/about_cover.svg" alt="about-page-cover"/>
                      </Grid>
                      <Grid item lg={5} className={classes.textGrid}>
-                            <Typography variant="h3" className={classes.title}>
+                            <Typography variant="h4" className={classes.title}>
                                    About us
                             </Typography>
                             <Typography variant="h6" className={classes.subHeading}>
