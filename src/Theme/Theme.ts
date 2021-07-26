@@ -35,7 +35,7 @@ const theme = createTheme({
        typography:{
               fontFamily: [
                      'Hammersmith One',
-                     'serif',
+                     'sans-serif',
                      ].join(','),
        },
 });
