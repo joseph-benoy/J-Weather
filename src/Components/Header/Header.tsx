@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
       }),
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(5),
       color:theme.palette.primary.main,
       display:"none",
       [theme.breakpoints.down('md')]:{
