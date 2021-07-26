@@ -9,7 +9,10 @@ import { useForm,SubmitHandler } from 'react-hook-form';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-
+import InputAdornment from '@material-ui/core/InputAdornment';
+import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
+import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
+import TextField from '@material-ui/core/TextField';
 
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
@@ -88,12 +91,49 @@ const Contact:React.FC = ()=>{
                      <Grid item lg={6}>
                             <img src="./images/contact_us.svg" alt="contact-us" className={classes.coverImage}/>
                      </Grid>
-                     <Grid item lg={6}>
+                     <Grid item container lg={6}>
                             <form className={classes.formBase} noValidate autoComplete="off"> 
-                                   <FormControl variant="outlined">
-                                          <InputLabel className={classes.formLabel} htmlFor="fullName">Name</InputLabel>
-                                          <OutlinedInput className={classes.formInput} id="fullName"   label="Name" />
-                                   </FormControl>
+                                   <Grid container item xs={12} spacing={3}>
+                                          <Grid item xs={12}>
+                                                 <FormControl variant="outlined" fullWidth={true}>
+                                                        <InputLabel className={classes.formLabel} htmlFor="fullName">Name</InputLabel>
+                                                        <OutlinedInput 
+                                                               fullWidth={true}
+                                                               startAdornment={
+                                                                      <InputAdornment position="start">
+                                                                             <PermIdentityOutlinedIcon />
+                                                                      </InputAdornment>
+                                                               }
+                                                               className={classes.formInput}
+                                                               id="fullName"
+                                                               label="Name"
+                                                               placeholder="John Doe"
+                                                        />
+                                                 </FormControl>
+                                          </Grid>
+                                          <Grid item xs={12}>
+                                                 <FormControl variant="outlined" fullWidth={true}>
+                                                        <InputLabel className={classes.formLabel} htmlFor="email">Email</InputLabel>
+                                                        <OutlinedInput 
+                                                        startAdornment={
+                                                               <InputAdornment position="start">
+                                                                      <EmailOutlinedIcon />
+                                                               </InputAdornment>
+                                                        }
+                                                        className={classes.formInput} id="email" placeholder="johndoe@example.com" label="email" />
+                                                 </FormControl>
+                                          </Grid>
+                                          <Grid item xs={12}>
+                                                 <TextField
+                                                        id="message"
+                                                        label="message"
+                                                        multiline
+                                                        rows={4}
+                                                        variant="outlined"
+                                                        fullWidth={true}
+                                                 />
+                                          </Grid>
+                                   </Grid>
                             </form>
                      </Grid>
               </Grid>
