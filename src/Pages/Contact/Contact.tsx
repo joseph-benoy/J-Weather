@@ -5,14 +5,15 @@ import { Typography } from '@material-ui/core';
 import MainButton from '../../Components/MainButton/MainButton';
 import { useHistory } from 'react-router';
 import LocalPhoneOutlinedIcon from '@material-ui/icons/LocalPhoneOutlined';
+import { useForm } from 'react-hook-form';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
               padding:"5vw",
        },
        coverImage:{
-              width:"100%",
-              height:"100%",
+              width:"95%",
+              height:"95%",
               marginBottom:"5vh",
        },
        title:{
@@ -57,17 +58,20 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               }
        },
 }))
-
+interface contactFormInputs {
+       fullName: string
+       email: string
+       message:string
+     }
 const Contact:React.FC = ()=>{
        const classes = useStyles();
        const history = useHistory();
-       const navigateTo = React.useRef(history.push).current;
-       const routeToContact = React.useCallback(()=>{
-              navigateTo("contact");
-       },[navigateTo])
+       const {handleSubmit,register,formState:{errors}} = useForm<contactFormInputs>();
        return (
               <Grid container className={classes.root}>
-                     
+                     <Grid item lg={6}>
+                            <img src="./images/contact_us.svg" alt="contact-us" className={classes.coverImage}/>
+                     </Grid>
               </Grid>
        );
 }
