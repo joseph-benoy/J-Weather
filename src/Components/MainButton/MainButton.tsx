@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
 interface Props{
        click?:()=>void,
        icon:JSX.Element,
-       text:string
+       text:string,
+       type?:"button" | "submit" | "reset" | undefined
 }
 
 const MainButton:(props: Props) => JSX.Element= (props:Props)=>{
@@ -33,7 +34,7 @@ const MainButton:(props: Props) => JSX.Element= (props:Props)=>{
        return(
               <>
               <Grid item container className={classes.buttonGrid}>
-                     <Button onClick={props.click} startIcon={props.icon} size="large" className={classes.button} variant="contained" color="secondary">
+                     <Button type={props.type} onClick={props.click} startIcon={props.icon} size="large" className={classes.button} variant="contained" color="secondary">
                             <Typography>{props.text}</Typography>
                      </Button>
               </Grid>

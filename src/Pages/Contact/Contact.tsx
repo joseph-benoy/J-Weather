@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               [theme.breakpoints.down('md')]:{
                     width:"101.5vw"
               }
-            }
+            },
 }))
 interface contactFormInputs {
        fullName: string
@@ -60,8 +60,8 @@ const Contact:React.FC = ()=>{
                             <img src="./images/contact_us.svg" alt="contact-us" className={classes.coverImage}/>
                      </Grid>
                      <Grid item container lg={5}>
-                            <form className={classes.formBase} noValidate autoComplete="off"> 
-                                   <Grid container xs={12} className={classes.formGrid}  spacing={3}>
+                            <form onSubmit={handleSubmit(onSubmit)} className={classes.formBase} noValidate autoComplete="off"> 
+                                   <Grid container item xs={12} className={classes.formGrid}  spacing={3}>
                                           <Grid item xs={12}>
                                                  <Typography className={classes.title} variant="h4">Contact Us</Typography>
                                           </Grid>
@@ -108,7 +108,7 @@ const Contact:React.FC = ()=>{
                                                  />
                                           </Grid>
                                           <Grid item xs={12}  style={{marginTop:"-5vh"}}>
-                                                 <MainButton text="message" icon={<SendOutlinedIcon/>}/>
+                                                 <MainButton type="submit" text="message" icon={<SendOutlinedIcon/>}/>
                                           </Grid>
                                    </Grid>
                             </form>
