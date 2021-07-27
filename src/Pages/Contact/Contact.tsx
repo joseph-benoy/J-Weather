@@ -73,7 +73,7 @@ const Contact:React.FC = ()=>{
                                                  <FormControl variant="outlined" fullWidth={true}>
                                                         <InputLabel  htmlFor="fullName">Name</InputLabel>
                                                         <OutlinedInput 
-                                                               error
+                                                               error={errors.fullName!==undefined}
                                                                {...register('fullName',validationObj.fullName)}
                                                                type="email"
                                                                fullWidth={true}
@@ -99,6 +99,7 @@ const Contact:React.FC = ()=>{
                                                                       <EmailOutlinedIcon />
                                                                </InputAdornment>
                                                         }
+                                                        error={errors.email!==undefined}
                                                          id="email" placeholder="johndoe@example.com" label="email" />
                                                          <FormHelperText id="email-helper-text">{errors.email?.message}</FormHelperText>
                                                  </FormControl>
@@ -112,7 +113,7 @@ const Contact:React.FC = ()=>{
                                                         rows={4}
                                                         variant="outlined"
                                                         fullWidth={true}
-                                                        error
+                                                        error={(errors.message!==undefined)}
                                                         helperText={errors.message?.message}
                                                  />
                                           </Grid>
