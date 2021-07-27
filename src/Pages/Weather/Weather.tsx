@@ -39,12 +39,16 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        }
 }));
 
-
+interface weatherForm{
+       city:string
+}
 const Weather:React.FC = ()=>{
        const classes = useStyles();
        const dispatch = useDispatch();
        const queryCity = useSelector((state:RootState)=>state.weather.city);
        console.log(queryCity);
+       const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
+       const onSubmit:SubmitHandler<weatherForm> = (data)=>console.log(data); 
        return(
               <Grid container className={classes.root}>
                      <Grid item xs={12}>
@@ -56,7 +60,7 @@ const Weather:React.FC = ()=>{
                             <form>
                                    <Grid container item xs={12} spacing={2}>
                                    <Grid item xs={12} lg={10}>
-                                          <TextField fullWidth  variant="outlined" type="text" placeholder="eg. Mumbai" name="city"/>
+                                          <TextField {...register('city')} fullWidth  variant="outlined" type="text" placeholder="eg. Mumbai" name="city"/>
                                    </Grid>
                                    <Grid item xs={12} container lg={2} className={classes.buttonGrid} alignItems="stretch">
                                           <MainButton type="submit" text="search" icon={<SearchOutlinedIcon/>}/>
