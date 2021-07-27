@@ -49,6 +49,11 @@ interface contactFormInputs {
        email: string
        message:string
      }
+const validationObj = {
+       fullName:{required:true,maxLength:25,minLength:3},
+       email:{required:true,maxLength:255,pattern:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i},
+       message:{required:true,minLength:5}
+};
 const Contact:React.FC = ()=>{
        const classes = useStyles();
        const history = useHistory();
@@ -69,7 +74,7 @@ const Contact:React.FC = ()=>{
                                                  <FormControl variant="outlined" fullWidth={true}>
                                                         <InputLabel  htmlFor="fullName">Name</InputLabel>
                                                         <OutlinedInput 
-                                                               {...register('fullName')}
+                                                               {...register('fullName',validationObj.fullName)}
                                                                type="email"
                                                                fullWidth={true}
                                                                startAdornment={
@@ -87,7 +92,7 @@ const Contact:React.FC = ()=>{
                                                  <FormControl variant="outlined" fullWidth={true}>
                                                         <InputLabel className={classes.formLabel} htmlFor="email">Email</InputLabel>
                                                         <OutlinedInput 
-                                                        {...register('email')}
+                                                        {...register('email',validationObj.email)}
                                                         startAdornment={
                                                                <InputAdornment position="start">
                                                                       <EmailOutlinedIcon />
@@ -98,7 +103,7 @@ const Contact:React.FC = ()=>{
                                           </Grid>
                                           <Grid item xs={12}>
                                                  <TextField
-                                                        {...register('message')}
+                                                        {...register('message',validationObj.message)}
                                                         id="message"
                                                         label="message"
                                                         multiline
