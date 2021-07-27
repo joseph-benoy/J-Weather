@@ -7,6 +7,7 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import { useSelector,useDispatch } from 'react-redux';
 import {RootState} from '../../Redux/Store';
 import { useForm,SubmitHandler } from 'react-hook-form';
+import { setQueryCity } from '../../Redux/Weather/WeatherSlice';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -57,7 +58,9 @@ const Weather:React.FC = ()=>{
        const dispatch = useDispatch();
        const queryCity = useSelector((state:RootState)=>state.weather.city);
        const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
-       const onSubmit:SubmitHandler<weatherForm> = (data)=>console.log(data); 
+       const onSubmit:SubmitHandler<weatherForm> = (data:weatherForm)=>{
+              dispatch(setQueryCity(data.city));
+       }; 
        return(
               <Grid container className={classes.root}>
                      <Grid item xs={12}>
