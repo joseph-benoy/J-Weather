@@ -79,7 +79,7 @@ const Contact:React.FC = ()=>{
                                                                fullWidth={true}
                                                                startAdornment={
                                                                       <InputAdornment position="start">
-                                                                             <PermIdentityOutlinedIcon />
+                                                                             <PermIdentityOutlinedIcon/>
                                                                       </InputAdornment>
                                                                }
                                                                id="fullName"
