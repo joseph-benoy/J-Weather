@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               opacity:"90%",
               marginTop:"7vh",
               [theme.breakpoints.down('md')]:{
-                     display:"none"
+                     width:"75%",
+                     height:"75%",
               }
        },
        buttonGrid:{
