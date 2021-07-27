@@ -42,11 +42,20 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
 interface weatherForm{
        city:string
 }
+const validationObj= {
+       required:{
+              value:true,
+              message:"Please enter your city"
+       },
+       minLength:{
+              value:2,
+              message:"City name is too short"
+       }
+};
 const Weather:React.FC = ()=>{
        const classes = useStyles();
        const dispatch = useDispatch();
        const queryCity = useSelector((state:RootState)=>state.weather.city);
-       console.log(queryCity);
        const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
        const onSubmit:SubmitHandler<weatherForm> = (data)=>console.log(data); 
        return(
@@ -57,10 +66,10 @@ const Weather:React.FC = ()=>{
                             </Typography>
                      </Grid>
                      <Grid item xs={12}>
-                            <form>
+                            <form onSubmit={handleSubmit(onSubmit)}>
                                    <Grid container item xs={12} spacing={2}>
                                    <Grid item xs={12} lg={10}>
-                                          <TextField {...register('city')} fullWidth  variant="outlined" type="text" placeholder="eg. Mumbai" name="city"/>
+                                          <TextField error={errors.city!==undefined} helperText={errors.city?.message} {...register('city',validationObj)} fullWidth  variant="outlined" type="text" placeholder="eg. Mumbai" name="city"/>
                                    </Grid>
                                    <Grid item xs={12} container lg={2} className={classes.buttonGrid} alignItems="stretch">
                                           <MainButton type="submit" text="search" icon={<SearchOutlinedIcon/>}/>
