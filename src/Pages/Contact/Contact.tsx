@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import MainButton from '../../Components/MainButton/MainButton';
-import { useHistory } from 'react-router';
 import { useForm,SubmitHandler } from 'react-hook-form';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -13,6 +12,7 @@ import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import TextField from '@material-ui/core/TextField';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
+import { FormHelperText } from '@material-ui/core';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -50,13 +50,12 @@ interface contactFormInputs {
        message:string
      }
 const validationObj = {
-       fullName:{required:true,maxLength:25,minLength:3},
-       email:{required:true,maxLength:255,pattern:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i},
-       message:{required:true,minLength:5}
+       fullName:{required:{value:true,message:"Please enter your name"},maxLength:{value:25,message:"Your name is too long"},minLength:{value:3,message:"Your name is too short"}},
+       email:{required:{value:true,message:"Let us know your email"},maxLength:{value:255,message:"Your email is too long"},pattern:{value:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,message:"Please enter a valid email"}},
+       message:{required:{value:true,message:"Please don't leave empty message"},minLength:{value:5,message:"Message is too short"}}
 };
 const Contact:React.FC = ()=>{
        const classes = useStyles();
-       const history = useHistory();
        const {handleSubmit,register,formState:{errors}} = useForm<contactFormInputs>();
        const onSubmit:SubmitHandler<contactFormInputs> = (data)=>console.log(data); 
        return (
@@ -74,6 +73,7 @@ const Contact:React.FC = ()=>{
                                                  <FormControl variant="outlined" fullWidth={true}>
                                                         <InputLabel  htmlFor="fullName">Name</InputLabel>
                                                         <OutlinedInput 
+                                                               error
                                                                {...register('fullName',validationObj.fullName)}
                                                                type="email"
                                                                fullWidth={true}
@@ -86,6 +86,7 @@ const Contact:React.FC = ()=>{
                                                                label="Name"
                                                                placeholder="John Doe"
                                                         />
+                                                          <FormHelperText id="full-helper-text">{errors.fullName?.message}</FormHelperText>
                                                  </FormControl>
                                           </Grid>
                                           <Grid item xs={12}>
@@ -99,6 +100,7 @@ const Contact:React.FC = ()=>{
                                                                </InputAdornment>
                                                         }
                                                          id="email" placeholder="johndoe@example.com" label="email" />
+                                                         <FormHelperText id="email-helper-text">{errors.email?.message}</FormHelperText>
                                                  </FormControl>
                                           </Grid>
                                           <Grid item xs={12}>
@@ -110,6 +112,8 @@ const Contact:React.FC = ()=>{
                                                         rows={4}
                                                         variant="outlined"
                                                         fullWidth={true}
+                                                        error
+                                                        helperText={errors.message?.message}
                                                  />
                                           </Grid>
                                           <Grid item xs={12}  style={{marginTop:"-5vh"}}>
