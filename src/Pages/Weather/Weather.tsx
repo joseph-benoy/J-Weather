@@ -7,40 +7,19 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
-              padding:"5vh"
+              padding:"3vw",
+              paddingTop:"2vw",
+              [theme.breakpoints.down('md')]:{
+                     padding:"3vh",
+              }              
        },
        coverImage:{
-              width:"100%",
-              height:"100%",
+              width:"50%",
+              height:"50%",
+              opacity:"90%",
+              marginTop:"7vh",
               [theme.breakpoints.down('md')]:{
                      display:"none"
-              }
-       },
-       subHeading:{
-              fontSize:"1.5em",
-              fontFamily:"sans-serif",
-              color:"rgba(0,0,0,0.7)",
-              [theme.breakpoints.down('md')]:{
-                     textAlign:"justify",
-              }
-
-       },
-       heading:{
-              fontSize:"6em",
-              color:theme.palette.primary.main,
-              [theme.breakpoints.down('md')]:{
-                     textAlign:"center",
-                     fontSize:"4em",
-                     marginTop:theme.spacing(2)
-              }
-       },
-       button:{
-              color:"white",
-              margin: theme.spacing(1),
-              marginTop:theme.spacing(3),
-              width:"15vw",
-              [theme.breakpoints.down('md')]:{
-                     width:"50vw"
               }
        },
        buttonGrid:{
@@ -48,13 +27,8 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
               marginTop:theme.spacing(-2),
               [theme.breakpoints.down('md')]:{
                      justifyContent:"flex-start",
-                     marginTop:theme.spacing(-3),
+                     marginTop:theme.spacing(-1),
               }
-       },
-       divide:{
-              background:theme.palette.primary.main,
-              height:"0.7vh",
-              marginTop:theme.spacing(5),
        },
        title:{
               textAlign:"center"
@@ -65,7 +39,7 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
 const Weather:React.FC = ()=>{
        const classes = useStyles();
        return(
-              <Grid container spacing={2} className={classes.root}>
+              <Grid container className={classes.root}>
                      <Grid item xs={12}>
                             <Typography variant="h4" className={classes.title}>
                                    Let's know about your city
@@ -76,6 +50,9 @@ const Weather:React.FC = ()=>{
                      </Grid>
                      <Grid item xs={12} container lg={2} className={classes.buttonGrid} alignItems="stretch">
                             <MainButton text="search" icon={<SearchOutlinedIcon/>}/>
+                     </Grid>
+                     <Grid item xs={12} container justifyContent="center">
+                            <img src="./images/city.svg" alt="city" className={classes.coverImage}/>
                      </Grid>
               </Grid>
        );
