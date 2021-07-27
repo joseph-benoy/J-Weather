@@ -31,41 +31,6 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
                      textAlign:"center"
               }              
        },
-       subHeading:{
-              color:"rgba(0,0,0,0.7)",
-              fontFamily:"sans-serif",
-              textAlign:"justify"
-       },
-       textGrid:{
-              marginLeft:"5vw",
-              [theme.breakpoints.down('md')]:{
-                     marginLeft:"0vw",
-              }
-       },
-       buttonGrid:{
-              justifyContent:"center",
-              [theme.breakpoints.up('md')]:{
-                     justifyContent:"flex-start"
-              }
-       },
-       button:{
-              color:"white",
-              margin: theme.spacing(1),
-              marginTop:theme.spacing(3),
-              width:"15vw",
-              [theme.breakpoints.down('md')]:{
-                     width:"50vw"
-              }
-       },
-       coverImageMob:{
-              width:"100%",
-              height:"100%",
-              display:"none",
-              marginTop:"-10vh",
-              [theme.breakpoints.down('md')]:{
-                     display:"block"
-              }
-       },
        formLabel:{
               fontFamily:"sans-serif",
        },
@@ -102,15 +67,16 @@ const Contact:React.FC = ()=>{
                                           </Grid>
                                           <Grid item xs={12}>
                                                  <FormControl variant="outlined" fullWidth={true}>
-                                                        <InputLabel className={classes.formLabel} htmlFor="fullName">Name</InputLabel>
+                                                        <InputLabel  htmlFor="fullName">Name</InputLabel>
                                                         <OutlinedInput 
+                                                               {...register('fullName')}
+                                                               type="email"
                                                                fullWidth={true}
                                                                startAdornment={
                                                                       <InputAdornment position="start">
                                                                              <PermIdentityOutlinedIcon />
                                                                       </InputAdornment>
                                                                }
-                                                               className={classes.formInput}
                                                                id="fullName"
                                                                label="Name"
                                                                placeholder="John Doe"
@@ -121,16 +87,18 @@ const Contact:React.FC = ()=>{
                                                  <FormControl variant="outlined" fullWidth={true}>
                                                         <InputLabel className={classes.formLabel} htmlFor="email">Email</InputLabel>
                                                         <OutlinedInput 
+                                                        {...register('email')}
                                                         startAdornment={
                                                                <InputAdornment position="start">
                                                                       <EmailOutlinedIcon />
                                                                </InputAdornment>
                                                         }
-                                                        className={classes.formInput} id="email" placeholder="johndoe@example.com" label="email" />
+                                                         id="email" placeholder="johndoe@example.com" label="email" />
                                                  </FormControl>
                                           </Grid>
                                           <Grid item xs={12}>
                                                  <TextField
+                                                        {...register('message')}
                                                         id="message"
                                                         label="message"
                                                         multiline
@@ -140,7 +108,7 @@ const Contact:React.FC = ()=>{
                                                  />
                                           </Grid>
                                           <Grid item xs={12}  style={{marginTop:"-5vh"}}>
-                                                        <MainButton text="message" icon={<SendOutlinedIcon/>}/>
+                                                 <MainButton text="message" icon={<SendOutlinedIcon/>}/>
                                           </Grid>
                                    </Grid>
                             </form>
