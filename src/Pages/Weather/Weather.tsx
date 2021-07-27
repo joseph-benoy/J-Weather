@@ -45,9 +45,10 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        },
        buttonGrid:{
               display:"flex",
-              marginTop:"-3vh",
-              [theme.breakpoints.up('md')]:{
-                     justifyContent:"flex-start"
+              marginTop:theme.spacing(-2),
+              [theme.breakpoints.down('md')]:{
+                     justifyContent:"flex-start",
+                     marginTop:theme.spacing(-3),
               }
        },
        divide:{
