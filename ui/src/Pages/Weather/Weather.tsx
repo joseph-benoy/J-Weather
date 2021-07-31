@@ -8,6 +8,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import {RootState} from '../../Redux/Store';
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { setQueryCity } from '../../Redux/Weather/WeatherSlice';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -58,8 +59,15 @@ const Weather:React.FC = ()=>{
        const dispatch = useDispatch();
        const queryCity = useSelector((state:RootState)=>state.weather.city);
        const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
-       const onSubmit:SubmitHandler<weatherForm> = (data:weatherForm)=>{
+       const onSubmit:SubmitHandler<weatherForm> = async (data:weatherForm)=>{
               dispatch(setQueryCity(data.city));
+              try{
+                     let response = await axios.get(`/weather?city=${data.city}`);
+                     console.log(response.data);
+              }
+              catch(error){
+                     console.log(error.response.data);
+              }
        }; 
        return(
               <Grid container className={classes.root}>
