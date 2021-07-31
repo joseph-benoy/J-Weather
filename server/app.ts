@@ -46,6 +46,10 @@ app.get("/",(req:express.Request,res:express.Response,next:express.NextFunction)
        res.status(200).send(runningMessage);
 })
 
+app.use((error:any,req:express.Request,res:express.Response,next:express.NextFunction)=>{
+       res.status(error.status).json(error.body);
+})
+
 server.listen(port,()=>{
        routes.forEach((value:CommonRoutesConfig)=>{
               log(`Routes configured for ${value.getName()}`);
