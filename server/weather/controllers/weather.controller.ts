@@ -16,7 +16,12 @@ class WeatherController{
                      res.status(200).json(weatherData);
               }
               catch(error){
-                     next(error);
+                     if(error.status){
+                            next(error)
+                     }
+                     else{
+                            next({status:400,message:error.message});
+                     }
               }
        }
 }

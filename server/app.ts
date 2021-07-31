@@ -48,7 +48,7 @@ app.get("/",(req:express.Request,res:express.Response,next:express.NextFunction)
 })
 
 app.use((error:expressError,req:express.Request,res:express.Response,next:express.NextFunction)=>{
-       res.status(error.status).json(error.message);
+       res.status(error.status).json({error:error.message});
 })
 
 server.listen(port,()=>{
