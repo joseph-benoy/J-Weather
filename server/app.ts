@@ -34,6 +34,7 @@ const loggerOptions:expressWinston.LoggerOptions = {
 
 if(!process.env.DEBUG){
        loggerOptions.meta = false;
+       loggerOptions.level = 'http';
 }
 
 app.use(expressWinston.logger(loggerOptions));

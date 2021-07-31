@@ -5,7 +5,7 @@
   "main": "app.ts",
   "scripts": {
     "start": "node ./build/app.js",
-    "debug": "export DEBUG=* nodemon ./app.ts",
+    "debug": "export DEBUG=* && nodemon ./app.ts",
     "build": "tsc -p .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
