@@ -28,7 +28,7 @@ class MessageDao{
                             message.length>5
                      )
               }
-       });
+       },{timestamps:true});
        Message = mongooseService.getMongoose().model('Message',this.messageSchema);
        constructor(){
               log("message dao created!");
@@ -37,8 +37,8 @@ class MessageDao{
               const messageObj = new this.Message({
                      ...message
               });
-              await messageObj.save();
-              return messageObj;
+              let result = await messageObj.save();
+              return result;
        }
 }
 

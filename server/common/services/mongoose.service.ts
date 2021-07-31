@@ -8,14 +8,17 @@ class MongooseService{
        private mongooseOptions = {
               useNewUrlParser: true,
               useUnifiedTopology: true,
-              serverSelectionTimeoutMS: 5000,
               useFindAndModify: false,
+       }
+       constructor(){
+              this.connectWithRetry();
        }
        getMongoose(){
               return mongoose;
        }
        connectWithRetry = ():void=>{
               log("connecting to mongodb");
+              log(process.env.MONGO_URI)
               mongoose.connect(process.env.MONGO_URI as string,this.mongooseOptions)
               .then((value:typeof mongoose)=>{
                      log("mongoose connected");
