@@ -13,6 +13,8 @@ import CommonRoutesConfig from './common/common.routes.config';
 import WeatherRoutesConfig from './weather/weather.routes.config';
 import helmet from 'helmet';
 import expressError from './common/types/error.express.types';
+import MessageRoutesConfig from './message/message.routes.config';
+
 
 const app:express.Application = express();
 const server:http.Server = http.createServer(app);
@@ -41,6 +43,7 @@ if(!process.env.DEBUG){
 app.use(expressWinston.logger(loggerOptions));
 
 routes.push(new WeatherRoutesConfig(app));
+routes.push(new MessageRoutesConfig(app));
 
 const runningMessage = `Server is running at http://localhost:3001`;
 app.get("/",(req:express.Request,res:express.Response,next:express.NextFunction)=>{
