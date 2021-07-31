@@ -8,5 +8,7 @@ export default class WeatherRoutesConfig extends CommonRoutesConfig{
        configureRoutes():express.Application{
               this.app.route('/weather')
               .get();
+
+              return this.app;
        }
 };
