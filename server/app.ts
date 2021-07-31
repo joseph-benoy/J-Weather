@@ -12,6 +12,7 @@ import debug from 'debug';
 import CommonRoutesConfig from './common/common.routes.config';
 import WeatherRoutesConfig from './weather/weather.routes.config';
 import helmet from 'helmet';
+import expressError from './common/types/error.express.types';
 
 const app:express.Application = express();
 const server:http.Server = http.createServer(app);
@@ -46,8 +47,8 @@ app.get("/",(req:express.Request,res:express.Response,next:express.NextFunction)
        res.status(200).send(runningMessage);
 })
 
-app.use((error:any,req:express.Request,res:express.Response,next:express.NextFunction)=>{
-       res.status(error.status).json(error.body);
+app.use((error:expressError,req:express.Request,res:express.Response,next:express.NextFunction)=>{
+       res.status(error.status).json(error.message);
 })
 
 server.listen(port,()=>{

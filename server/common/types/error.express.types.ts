@@ -1,7 +1,9 @@
-export default interface expressError{
-       status:string,
-       body:{
-              error:string,
-              description:string
+
+export default class expressError{
+       public status:number;
+       public message:string;
+       constructor(status:number,message:string){
+              this.status = status;
+              this.message = message;
        }
 }
