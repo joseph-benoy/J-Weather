@@ -11,7 +11,7 @@ class MessageRoutesConfig extends CommonRoutesConfig{
               super(app,'Message');
        }
        configureRoutes():express.Application{
-              this.app.routes("/message/save")
+              this.app.route("/message/save")
               .post(messageController.saveMessage);
               return this.app;
        }

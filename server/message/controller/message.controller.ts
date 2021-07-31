@@ -8,6 +8,7 @@ const log:debug.IDebugger = debug("app:message-controller");
 class MessageController{
        async saveMessage(req:express.Request,res:express.Response,next:express.NextFunction){
               try{
+                     log(req.body);
                      await messageService.saveMessage(req.body);
                      res.status(200).json({message:'message saved'});
               }
