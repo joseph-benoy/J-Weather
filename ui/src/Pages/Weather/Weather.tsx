@@ -74,6 +74,7 @@ interface weather{
 const Weather:React.FC = ()=>{
        const classes = useStyles();
        const dispatch = useDispatch();
+       const [error,setError] = React.useState(false);
        const queryCity = useSelector((state:RootState)=>state.weather.city);
        const weatherData:any = useSelector((state:RootState)=>state.weather.data);
        const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
@@ -85,6 +86,7 @@ const Weather:React.FC = ()=>{
               }
               catch(error){
                      console.log(error.response.data);
+                     setError(true);
               }
        }; 
        return(
@@ -108,9 +110,14 @@ const Weather:React.FC = ()=>{
                      </Grid>
                      {
                             (weatherData===null)?(
-                                   <Grid item xs={12} container justifyContent="center">
-                                          <img src="./images/city.svg" alt="city" className={classes.coverImage}/>
-                                   </Grid>
+                                   <>
+                                          <Grid item xs={12} container justifyContent="center">
+                                                 <img src="./images/city.svg" alt="city" className={classes.coverImage}/>
+                                          </Grid>
+                                          <Grid item xs={12}>
+                                                 <Dialog open={error} message="City not found" type="error"/>
+                                          </Grid>
+                                   </>
                             ):(
                                    <Grid item xs={12} container spacing={2} style={{margin:0}}>
                                           <Grid item xs={12} className={classes.dataContainer}>

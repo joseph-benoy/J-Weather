@@ -28,7 +28,7 @@ export default function Dialog(props:Props) {
   const [open, setOpen] = React.useState(false);
        React.useEffect(()=>{
               setOpen(props.open)
-       },[]);
+       },[props.open]);
 
   const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
     if (reason === 'clickaway') {
