@@ -23,7 +23,7 @@ interface Props{
        type:"error" | "success" | "info" | "warning",
 }
 
-export default function Dialog(props:Props) {
+function Dialog(props:Props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
        React.useEffect(()=>{
@@ -48,3 +48,5 @@ export default function Dialog(props:Props) {
     </div>
   );
 }
+
+export default React.memo(Dialog);
