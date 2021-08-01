@@ -13,6 +13,8 @@ import PermIdentityOutlinedIcon from '@material-ui/icons/PermIdentityOutlined';
 import TextField from '@material-ui/core/TextField';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import { FormHelperText } from '@material-ui/core';
+import axios from 'axios';
+import Dialog from '../../Components/dailog/Dialog';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -54,10 +56,36 @@ const validationObj = {
        email:{required:{value:true,message:"Let us know your email"},maxLength:{value:255,message:"Your email is too long"},pattern:{value:/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,message:"Please enter a valid email"}},
        message:{required:{value:true,message:"Please don't leave empty message"},minLength:{value:5,message:"Message is too short"}}
 };
+interface DialogType{
+       open:boolean,
+       message:string,
+       type:"error" | "success" | "info" | "warning",
+}
 const Contact:React.FC = ()=>{
        const classes = useStyles();
        const {handleSubmit,register,formState:{errors}} = useForm<contactFormInputs>();
-       const onSubmit:SubmitHandler<contactFormInputs> = (data)=>console.log(data); 
+       const [error,setError] = React.useState<DialogType | null>({type:"success",message:'',open:false});
+       const onSubmit:SubmitHandler<contactFormInputs> = async (data)=>{
+              try{
+                     await axios.post("/message/save",{
+                            fullName:data.fullName,
+                            email:data.email,
+                            message:data.message
+                     })
+                     setError({
+                            open:true,
+                            message:"Message is sent!",
+                            type:"success"
+                     });
+              }
+              catch(error){
+                     setError({
+                            open:true,
+                            message:"Something went wrong!",
+                            type:"error"
+                     });
+              }
+       }; 
        return (
               <Grid container className={classes.root}>
                      <Grid item lg={7}>
@@ -122,6 +150,9 @@ const Contact:React.FC = ()=>{
                                           </Grid>
                                    </Grid>
                             </form>
+                     </Grid>
+                     <Grid item xs={12}>
+                            <Dialog cb={} message={error?.message as string} type={error?.type} open={error?.open}/>
                      </Grid>
               </Grid>
        );

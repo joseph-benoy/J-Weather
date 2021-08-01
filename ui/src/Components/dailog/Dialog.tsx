@@ -18,14 +18,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface Props{
-       open:boolean,
+       open:boolean|  undefined ,
        message:string,
-       type:"error" | "success" | "info" | "warning",
+       type:"error" | "success" | "info" | "warning" | undefined,
+       cb?:()=>void
 }
 
 function Dialog(props:Props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState<boolean | undefined>(false);
        React.useEffect(()=>{
               setOpen(props.open)
        },[props.open]);
