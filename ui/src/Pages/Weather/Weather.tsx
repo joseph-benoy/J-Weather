@@ -9,6 +9,12 @@ import {RootState} from '../../Redux/Store';
 import { useForm,SubmitHandler } from 'react-hook-form';
 import { setQueryCity, setWeatherData } from '../../Redux/Weather/WeatherSlice';
 import axios from 'axios';
+import WhatshotOutlinedIcon from '@material-ui/icons/WhatshotOutlined';
+import { Paper } from '@material-ui/core';
+import AcUnitOutlinedIcon from '@material-ui/icons/AcUnitOutlined';
+import FilterTiltShiftOutlinedIcon from '@material-ui/icons/FilterTiltShiftOutlined';
+import CloudOutlinedIcon from '@material-ui/icons/CloudOutlined';
+import HdrWeakOutlinedIcon from '@material-ui/icons/HdrWeakOutlined';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
@@ -38,6 +44,9 @@ const useStyles = makeStyles((theme:Theme)=>createStyles({
        },
        title:{
               textAlign:"center"
+       },
+       dataContainer:{
+              textAlign:"center"
        }
 }));
 
@@ -54,11 +63,18 @@ const validationObj= {
               message:"City name is too short"
        }
 };
+interface weather{
+       temp:number,
+       humidity:number,
+       wind:number,
+       weather:string,
+       pressure:number
+}
 const Weather:React.FC = ()=>{
        const classes = useStyles();
        const dispatch = useDispatch();
        const queryCity = useSelector((state:RootState)=>state.weather.city);
-       const weatherData = useSelector((state:RootState)=>state.weather.data);
+       const weatherData:any = useSelector((state:RootState)=>state.weather.data);
        const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
        const onSubmit:SubmitHandler<weatherForm> = async (data:weatherForm)=>{
               dispatch(setQueryCity(data.city));
@@ -95,8 +111,38 @@ const Weather:React.FC = ()=>{
                                           <img src="./images/city.svg" alt="city" className={classes.coverImage}/>
                                    </Grid>
                             ):(
-                                   <Grid item xs={12} container>
-                                          <Typography variant="h6">dfdf</Typography>
+                                   <Grid item xs={12} container spacing={2} style={{margin:0}}>
+                                          <Grid item xs={12} className={classes.dataContainer}>
+                                                 <Typography variant="h4">{`${weatherData?.weather.slice(0,1).toUpperCase()}${weatherData?.weather.slice(1)}`}</Typography>
+                                          </Grid>
+                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                                 <Paper elevation={2}>
+                                                        <Typography variant="h4">{weatherData?.temp}&#8451;</Typography>
+                                                        <WhatshotOutlinedIcon/>
+                                                        <Typography variant="body1">Temperature</Typography>
+                                                 </Paper>
+                                          </Grid>
+                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                                 <Paper elevation={2}>
+                                                        <Typography variant="h4">{weatherData?.humidity}%</Typography>
+                                                        <AcUnitOutlinedIcon/>
+                                                        <Typography variant="body1">Humidity</Typography>
+                                                 </Paper>
+                                          </Grid>
+                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                                 <Paper elevation={2}>
+                                                        <Typography variant="h4">{weatherData?.pressure}Pa</Typography>
+                                                        <FilterTiltShiftOutlinedIcon/>
+                                                        <Typography variant="body1">Pressure</Typography>
+                                                 </Paper>
+                                          </Grid>
+                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                                 <Paper elevation={2}>
+                                                        <Typography variant="h4">{weatherData?.wind}m/s</Typography>
+                                                        <HdrWeakOutlinedIcon/>
+                                                        <Typography variant="body1">Wind speed</Typography>
+                                                 </Paper>
+                                          </Grid>
                                    </Grid>
                             )
                      }
