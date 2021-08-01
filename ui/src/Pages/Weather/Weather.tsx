@@ -115,28 +115,28 @@ const Weather:React.FC = ()=>{
                                           <Grid item xs={12} className={classes.dataContainer}>
                                                  <Typography variant="h4">{`${weatherData?.weather.slice(0,1).toUpperCase()}${weatherData?.weather.slice(1)}`}</Typography>
                                           </Grid>
-                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                          <Grid item xs={12} lg={6} className={classes.dataContainer}>
                                                  <Paper elevation={2}>
                                                         <Typography variant="h4">{weatherData?.temp}&#8451;</Typography>
                                                         <WhatshotOutlinedIcon/>
                                                         <Typography variant="body1">Temperature</Typography>
                                                  </Paper>
                                           </Grid>
-                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                          <Grid item xs={12} lg={6} className={classes.dataContainer}>
                                                  <Paper elevation={2}>
                                                         <Typography variant="h4">{weatherData?.humidity}%</Typography>
                                                         <AcUnitOutlinedIcon/>
                                                         <Typography variant="body1">Humidity</Typography>
                                                  </Paper>
                                           </Grid>
-                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                          <Grid item xs={12} lg={6} className={classes.dataContainer}>
                                                  <Paper elevation={2}>
                                                         <Typography variant="h4">{weatherData?.pressure}Pa</Typography>
                                                         <FilterTiltShiftOutlinedIcon/>
                                                         <Typography variant="body1">Pressure</Typography>
                                                  </Paper>
                                           </Grid>
-                                          <Grid item xs={6} lg={6} className={classes.dataContainer}>
+                                          <Grid item xs={12} lg={6} className={classes.dataContainer}>
                                                  <Paper elevation={2}>
                                                         <Typography variant="h4">{weatherData?.wind}m/s</Typography>
                                                         <HdrWeakOutlinedIcon/>
