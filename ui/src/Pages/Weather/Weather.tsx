@@ -15,6 +15,7 @@ import AcUnitOutlinedIcon from '@material-ui/icons/AcUnitOutlined';
 import FilterTiltShiftOutlinedIcon from '@material-ui/icons/FilterTiltShiftOutlined';
 import CloudOutlinedIcon from '@material-ui/icons/CloudOutlined';
 import HdrWeakOutlinedIcon from '@material-ui/icons/HdrWeakOutlined';
+import Dialog from '../../Components/dailog/Dialog';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
        root:{
