@@ -59,7 +59,7 @@ const validationObj = {
 interface DialogType{
        open:boolean,
        message:string,
-       type:"error" | "success" | "info" | "warning",
+       type:"error" | "success" | "info" | "warning" | undefined,
 }
 const Contact:React.FC = ()=>{
        const classes = useStyles();
@@ -86,6 +86,13 @@ const Contact:React.FC = ()=>{
                      });
               }
        }; 
+       const resetError = React.useCallback(()=>{
+              setError({
+                     open:false,
+                     message:'',
+                     type:undefined
+              })
+       },[]);
        return (
               <Grid container className={classes.root}>
                      <Grid item lg={7}>
@@ -152,7 +159,7 @@ const Contact:React.FC = ()=>{
                             </form>
                      </Grid>
                      <Grid item xs={12}>
-                            <Dialog cb={} message={error?.message as string} type={error?.type} open={error?.open}/>
+                            <Dialog cb={resetError} message={error?.message as string} type={error?.type} open={error?.open}/>
                      </Grid>
               </Grid>
        );

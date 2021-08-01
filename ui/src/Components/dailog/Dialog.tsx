@@ -37,6 +37,9 @@ function Dialog(props:Props) {
     }
 
     setOpen(false);
+    if(props?.cb!==undefined){
+      props?.cb();
+    }
   };
 
   return (
