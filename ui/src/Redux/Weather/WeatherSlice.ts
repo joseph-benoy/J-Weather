@@ -7,7 +7,7 @@ export interface weatherState{
 
 const initialState:weatherState = {
        city:"",
-       data:{}
+       data:null
 }
 export const weatherSlice = createSlice({
        name:'weather',
@@ -15,10 +15,13 @@ export const weatherSlice = createSlice({
        reducers:{
               setQueryCity:(state,action:PayloadAction<string>)=>{
                      state.city = action.payload;
+              },
+              setWeatherData:(state,action:PayloadAction<weatherState>)=>{
+                     state.data = action.payload;
               }
        }
 });
 
-export const {setQueryCity} = weatherSlice.actions;
+export const {setQueryCity,setWeatherData} = weatherSlice.actions;
 
 export default weatherSlice.reducer;

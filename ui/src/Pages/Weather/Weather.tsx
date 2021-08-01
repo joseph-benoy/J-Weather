@@ -7,7 +7,7 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import { useSelector,useDispatch } from 'react-redux';
 import {RootState} from '../../Redux/Store';
 import { useForm,SubmitHandler } from 'react-hook-form';
-import { setQueryCity } from '../../Redux/Weather/WeatherSlice';
+import { setQueryCity, setWeatherData } from '../../Redux/Weather/WeatherSlice';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme:Theme)=>createStyles({
@@ -58,12 +58,13 @@ const Weather:React.FC = ()=>{
        const classes = useStyles();
        const dispatch = useDispatch();
        const queryCity = useSelector((state:RootState)=>state.weather.city);
+       const weatherData = useSelector((state:RootState)=>state.weather.data);
        const {handleSubmit,register,formState:{errors}} = useForm<weatherForm>();
        const onSubmit:SubmitHandler<weatherForm> = async (data:weatherForm)=>{
               dispatch(setQueryCity(data.city));
               try{
                      let response = await axios.get(`/weather?city=${data.city}`);
-                     console.log(response.data);
+                     dispatch(setWeatherData(response.data));
               }
               catch(error){
                      console.log(error.response.data);
@@ -88,9 +89,17 @@ const Weather:React.FC = ()=>{
                                    </Grid>
                             </form>
                      </Grid>
-                     <Grid item xs={12} container justifyContent="center">
-                            <img src="./images/city.svg" alt="city" className={classes.coverImage}/>
-                     </Grid>
+                     {
+                            (weatherData===null)?(
+                                   <Grid item xs={12} container justifyContent="center">
+                                          <img src="./images/city.svg" alt="city" className={classes.coverImage}/>
+                                   </Grid>
+                            ):(
+                                   <Grid item xs={12} container>
+                                          <Typography variant="h6">dfdf</Typography>
+                                   </Grid>
+                            )
+                     }
               </Grid>
        );
 }
