@@ -16,7 +16,7 @@ export const weatherSlice = createSlice({
               setQueryCity:(state,action:PayloadAction<string>)=>{
                      state.city = action.payload;
               },
-              setWeatherData:(state,action:PayloadAction<weatherState>)=>{
+              setWeatherData:(state,action:PayloadAction<weatherState | null>)=>{
                      state.data = action.payload;
               }
        }

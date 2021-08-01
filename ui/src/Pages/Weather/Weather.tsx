@@ -86,6 +86,7 @@ const Weather:React.FC = ()=>{
               }
               catch(error){
                      console.log(error.response.data);
+                     dispatch(setWeatherData(null));
                      setError(true);
               }
        }; 
