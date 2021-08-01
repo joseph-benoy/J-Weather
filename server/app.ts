@@ -15,6 +15,8 @@ import helmet from 'helmet';
 import expressError from './common/types/error.express.types';
 import MessageRoutesConfig from './message/message.routes.config';
 import path from 'path';
+import fs from 'fs-extra';
+
 
 const app:express.Application = express();
 const server:http.Server = http.createServer(app);
@@ -55,18 +57,32 @@ app.use((error:expressError,req:express.Request,res:express.Response,next:expres
        res.status(error.status).json({error:error.message});
 })
 
-app.get("*",(req:express.Request,res:express.Response,next:express.NextFunction)=>{
-       if(req.originalUrl==="/"){
+app.get("*",async (req:express.Request,res:express.Response,next:express.NextFunction)=>{
+       try{
+              if(req.originalUrl==="/"){
+                     res
+                     .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
+                     .sendFile(path.resolve(__dirname,`../static/build/index.html`));
+              }
+              else{
+                     let flag = await fs.pathExists(path.resolve(__dirname,`../static/build${req.originalUrl}`));
+                     if(flag){
+                            res
+                            .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
+                            .sendFile(path.resolve(__dirname,`../static/build${req.originalUrl}`));
+                     }
+                     else{
+                            res
+                            .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
+                            .sendFile(path.resolve(__dirname,`../static/build/index.html`));  
+                     }
+              }
+       }
+       catch(error){
               log("#######################################3");
               res
               .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
-              .sendFile(path.resolve(__dirname,`./static/build/index.html`));
-       }
-       else{
-              log("############################# "+ req.originalUrl);
-              res
-              .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
-              .sendFile(path.resolve(__dirname,`./static/build${req.originalUrl}`));
+              .sendFile(path.resolve(__dirname,`../static/build/index.html`));
        }
 })
 

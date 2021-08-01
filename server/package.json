@@ -18,7 +18,9 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-winston": "^4.1.0",
+    "fs-extra": "^10.0.0",
     "helmet": "^4.6.0",
+    "install": "^0.13.0",
     "mongoose": "^5.13.5",
     "winston": "^3.3.3"
   },
@@ -27,6 +29,7 @@
     "@types/cors": "^2.8.12",
     "@types/debug": "^4.1.7",
     "@types/express": "^4.17.13",
+    "@types/fs-extra": "^9.0.12",
     "@types/mongoose": "^5.11.97",
     "@types/winston": "^2.4.4",
     "nodemon": "^2.0.12",
