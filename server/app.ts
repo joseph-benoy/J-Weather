@@ -14,7 +14,7 @@ import WeatherRoutesConfig from './weather/weather.routes.config';
 import helmet from 'helmet';
 import expressError from './common/types/error.express.types';
 import MessageRoutesConfig from './message/message.routes.config';
-
+import path from 'path';
 
 const app:express.Application = express();
 const server:http.Server = http.createServer(app);
@@ -43,16 +43,31 @@ if(!process.env.DEBUG){
 
 app.use(expressWinston.logger(loggerOptions));
 
+app.use(express.static('/static/build'));
+
 routes.push(new WeatherRoutesConfig(app));
 routes.push(new MessageRoutesConfig(app));
 
 const runningMessage = `Server is running at http://localhost:3001`;
-app.get("/",(req:express.Request,res:express.Response,next:express.NextFunction)=>{
-       res.status(200).send(runningMessage);
-})
+
 
 app.use((error:expressError,req:express.Request,res:express.Response,next:express.NextFunction)=>{
        res.status(error.status).json({error:error.message});
+})
+
+app.get("*",(req:express.Request,res:express.Response,next:express.NextFunction)=>{
+       if(req.originalUrl==="/"){
+              log("#######################################3");
+              res
+              .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
+              .sendFile(path.resolve(__dirname,`./static/build/index.html`));
+       }
+       else{
+              log("############################# "+ req.originalUrl);
+              res
+              .set("Content-Security-Policy", "default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'")
+              .sendFile(path.resolve(__dirname,`./static/build${req.originalUrl}`));
+       }
 })
 
 server.listen(port,()=>{
