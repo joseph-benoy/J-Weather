@@ -2,7 +2,7 @@
 
 ### Demo
 
-[Demo](jweathers.heroku.com)
+[Demo](https://jweathers.heroku.com)
 
 Weather app built using
 
