@@ -8,7 +8,7 @@ Weather app built using
  - material ui
  ### ScreenShots
 
-![Login Page](https://github.com/joseph-benoy/diary/screenshots/login.png)![Create Entry](https://github.com/joseph-benoy/diary/screenshots/create.png)![Read Entry](https://github.com/joseph-benoy/diary/screenshots/read.png)![Settings Page](https://github.com/joseph-benoy/diary/screenshots/settings.png)
+![Login Page](https://github.com/joseph-benoy/J-Weather/blob/main/screenshots/1.png)![Create Entry](https://github.com/joseph-benoy/J-Weather/blob/main/screenshots/2.png)![Read Entry](https://github.com/joseph-benoy/J-Weather/blob/main/screenshots/3.png)![Settings Page](https://github.com/joseph-benoy/J-Weather/blob/main/screenshots/4.png)![Read Entry](https://github.com/joseph-benoy/J-Weather/blob/main/screenshots/3.png)![Settings Page](https://github.com/joseph-benoy/J-Weather/blob/main/screenshots/5.png)
 ### Usage
 To run the both the server and client
 ```npm start```
